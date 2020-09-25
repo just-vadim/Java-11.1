@@ -3,6 +3,7 @@ package ru.netology.manager;
 import ru.netology.domain.PurchaseItem;
 
 public class CartManager {
+  private int returnCount = 10;
   private PurchaseItem[] items = new PurchaseItem[0];
 
   public void add(PurchaseItem item) {
@@ -21,29 +22,19 @@ public class CartManager {
     items = tmp;
   }
 
-  public PurchaseItem[] getAll() {
+  public PurchaseItem[] getLast(int returnCount){
     PurchaseItem[] result = new PurchaseItem[items.length];
-    // перебираем массив в прямом порядке
-    // но кладём в результаты в обратном
-    for (int i = 0; i < result.length; i++) {
+    for (int i = 0; i < returnCount & i < result.length; i++) {
       int index = items.length - i - 1;
       result[i] = items[index];
     }
     return result;
   }
 
-  // наивная реализация
-  public void removeById(int id) {
-    int length = items.length - 1;
-    PurchaseItem[] tmp = new PurchaseItem[length];
-    int index = 0;
-    for (PurchaseItem item : items) {
-      if (item.getId() != id) {
-        tmp[index] = item;
-        index++;
-      }
-    }
-    // меняем наши элементы
-    items = tmp;
+  public CartManager() {
+  }
+
+  public CartManager(int returnCount) {
+    this.returnCount = returnCount;
   }
 }
