@@ -1,43 +1,34 @@
 package ru.netology.manager;
 
 import ru.netology.domain.PurchaseItem;
+import ru.netology.repository.Repository;
 
 public class CartManager {
-  private int returnCount = 10;
-  private PurchaseItem[] items = new PurchaseItem[0];
+  private Repository repository;
 
-  public void add(PurchaseItem item) {
-    int length = items.length + 1;
-    PurchaseItem[] tmp = new PurchaseItem[length];
-    System.arraycopy(items, 0, tmp, 0, items.length);
-    int lastIndex = tmp.length - 1;
-    tmp[lastIndex] = item;
-    items = tmp;
+  public CartManager(Repository repository) {
+    this.repository = repository;
   }
 
-  public PurchaseItem[] getLast() {
+  public void add(PurchaseItem item) {
+    repository.save(item);
+  }
+
+  public PurchaseItem[] getAll() {
+    PurchaseItem[] items = repository.findAll();
     PurchaseItem[] result = new PurchaseItem[items.length];
-    if (items.length > returnCount) {
-      PurchaseItem[] result1 = new PurchaseItem[returnCount];
-      for (int i = 0; i < returnCount; i++) {
-        int index = items.length - i - 1;
-        result1[i] = items[index];
-      }
-      return result1;
-    }
-    else {
-      for (int i = 0; i < result.length; i++) {
-        int index = items.length - i - 1;
-        result[i] = items[index];
-      }
+    for (int i = 0; i < result.length; i++) {
+      int index = items.length - i - 1;
+      result[i] = items[index];
     }
     return result;
   }
 
-  public CartManager() {
+  public PurchaseItem[] findById(int id) {
+    return repository.findById(id);
   }
 
-  public CartManager(int returnCount) {
-    this.returnCount = returnCount;
+  public void removeById(int id) {
+    repository.removeById(id);
   }
 }
