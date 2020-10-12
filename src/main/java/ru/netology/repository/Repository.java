@@ -1,5 +1,5 @@
 package ru.netology.repository;
 
-public class repository {
-
+public class Repository {
+    
 }
