@@ -6,10 +6,6 @@ import ru.netology.repository.Repository;
 public class CartManager {
   private Repository repository;
 
-  public CartManager(Repository repository) {
-    this.repository = repository;
-  }
-
   public void add(PurchaseItem item) {
     repository.save(item);
   }
@@ -30,5 +26,9 @@ public class CartManager {
 
   public void removeById(int id) {
     repository.removeById(id);
+  }
+
+  public CartManager(Repository repository) {
+    this.repository = repository;
   }
 }

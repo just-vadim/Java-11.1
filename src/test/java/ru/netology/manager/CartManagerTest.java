@@ -5,9 +5,9 @@ import ru.netology.domain.PurchaseItem;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class CartManagerTest {
-    private CartManager manager = new CartManager();
+    /*private CartManager manager = new CartManager();*/
 
-    @Test
+    /*@Test
     public  void shouldSetReturnCount(){
         CartManager manager1 = new CartManager(5);
         PurchaseItem first = new PurchaseItem(1, 1, "first", 1, 1);
@@ -55,5 +55,5 @@ public class CartManagerTest {
         PurchaseItem[] expected = new PurchaseItem[] {third, second, first};
         PurchaseItem[] actual = manager.getLast();
         assertArrayEquals(expected, actual);
-    }
+    }*/
 }

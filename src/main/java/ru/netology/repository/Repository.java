@@ -1,6 +1,6 @@
 package ru.netology.repository;
-
 import ru.netology.domain.PurchaseItem;
+import java.util.ArrayList;
 
 public class Repository {
 
@@ -19,29 +19,28 @@ public class Repository {
         items = tmp;
     }
 
-    public PurchaseItem[] findById(int id){
-        PurchaseItem[] result = new PurchaseItem[1];
+    public PurchaseItem[] findById(int id) {
+        PurchaseItem[] result = new PurchaseItem[0];
         int index = 0;
         for (PurchaseItem item : items) {
             if (item.getId() == id) {
-                result[index] = item;
-                index++;
+                int length = result.length + 1;
+                PurchaseItem[] tmp = new PurchaseItem[length];
+                int lastIndex = tmp.length - 1;
+                tmp[lastIndex] = items[index];
+                result = tmp;
             }
+            index++;
         }
         return result;
     }
 
     public void removeById(int id){
-        int length = items.length - 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
-        int index = 0;
-        for (PurchaseItem item : items) {
-            if (item.getId() != id) {
-                tmp[index] = item;
-                index++;
-            }
-        }
-        items = tmp;
+        ArrayList list = new ArrayList();
+        System.arraycopy(items, 0 , list, 0, items.length);
+        list.remove(id);
+        PurchaseItem[] temp = new PurchaseItem[list.size()];
+        items = temp;
     }
 
     public void removeAll(){
