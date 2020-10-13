@@ -35,20 +35,26 @@ public class Repository {
             }
             index++;
         }
-        return result;
+        if (result.length == 0){
+            return null;
+        }
+        else {
+            return result;
+        }
     }
 
     public void removeById(int id) {
         List<PurchaseItem> list = new ArrayList<>(Arrays.asList(items));
         PurchaseItem[] removingItem = findById(id);
-        if (list.contains(removingItem[0])) {
-            list.remove(removingItem[0]);
-            PurchaseItem[] result = new PurchaseItem[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                result[i] = list.get(i);
-            }
-            items = result;
+        if (removingItem == null){
+            return;
         }
+        list.remove(removingItem[0]);
+        PurchaseItem[] result = new PurchaseItem[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
+        }
+        items = result;
     }
 
     public void removeAll(){
