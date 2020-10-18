@@ -1,14 +1,14 @@
 package ru.netology.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.PurchaseItem;
+import ru.netology.domain.Movie;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class RepositoryTest {
     private Repository repository = new Repository();
-    PurchaseItem first = new PurchaseItem(1, 1, "first", 1, 1);
-    PurchaseItem second = new PurchaseItem(2, 2, "second", 1, 1);
-    PurchaseItem third = new PurchaseItem(3, 3, "third", 1, 1);
+    Movie first = new Movie(1, "firstMovie", "firstGenre");
+    Movie second = new Movie(2, "secondMovie", "secondGenre");
+    Movie third = new Movie(3, "thirdMovie", "thirdGenre");
 
     @BeforeEach
     public void setUp(){
@@ -19,46 +19,46 @@ public class RepositoryTest {
 
     @Test
     public void shouldFindAll() {
-        PurchaseItem[] expected = new PurchaseItem[]{first, second, third};
-        PurchaseItem[] actual = repository.findAll();
+        Movie[] expected = new Movie[]{first, second, third};
+        Movie[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldFindById() {
-        PurchaseItem[] expected = new PurchaseItem[]{second};
-        PurchaseItem[] actual = repository.findById(2);
+        Movie[] expected = new Movie[]{second};
+        Movie[] actual = repository.findById(2);
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldNotFindById() {
-        PurchaseItem[] expected = null;
-        PurchaseItem[] actual = repository.findById(5);
+        Movie[] expected = null;
+        Movie[] actual = repository.findById(5);
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldRemoveById() {
-        PurchaseItem[] expected = new PurchaseItem[]{first, second};
+        Movie[] expected = new Movie[]{first, second};
         repository.removeById(3);
-        PurchaseItem[] actual = repository.findAll();
+        Movie[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldNotRemoveById() {
-        PurchaseItem[] expected = new PurchaseItem[]{first, second, third};
+        Movie[] expected = new Movie[]{first, second, third};
         repository.removeById(5);
-        PurchaseItem[] actual = repository.findAll();
+        Movie[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldRemoveAll() {
-        PurchaseItem[] expected = new PurchaseItem[]{};
+        Movie[] expected = new Movie[]{};
         repository.removeAll();
-        PurchaseItem[] actual = repository.findAll();
+        Movie[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 }

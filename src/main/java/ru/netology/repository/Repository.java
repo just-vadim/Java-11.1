@@ -1,5 +1,5 @@
 package ru.netology.repository;
-import ru.netology.domain.PurchaseItem;
+import ru.netology.domain.Movie;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,30 +7,30 @@ import java.util.List;
 
 public class Repository {
 
-    private PurchaseItem[] items = new PurchaseItem[0];
+    private Movie[] movies = new Movie[0];
 
-    public PurchaseItem[] findAll(){
-        return items;
+    public Movie[] findAll(){
+        return movies;
     }
 
-    public void save(PurchaseItem item){
-        int length = items.length + 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
-        System.arraycopy(items, 0, tmp, 0, items.length);
+    public void save(Movie item){
+        int length = movies.length + 1;
+        Movie[] tmp = new Movie[length];
+        System.arraycopy(movies, 0, tmp, 0, movies.length);
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = item;
-        items = tmp;
+        movies = tmp;
     }
 
-    public PurchaseItem[] findById(int id) {
-        PurchaseItem[] result = new PurchaseItem[0];
+    public Movie[] findById(int id) {
+        Movie[] result = new Movie[0];
         int index = 0;
-        for (PurchaseItem item : items) {
+        for (Movie item : movies) {
             if (item.getId() == id) {
                 int length = result.length + 1;
-                PurchaseItem[] tmp = new PurchaseItem[length];
+                Movie[] tmp = new Movie[length];
                 int lastIndex = tmp.length - 1;
-                tmp[lastIndex] = items[index];
+                tmp[lastIndex] = movies[index];
                 result = tmp;
             }
             index++;
@@ -44,20 +44,20 @@ public class Repository {
     }
 
     public void removeById(int id) {
-        List<PurchaseItem> list = new ArrayList<>(Arrays.asList(items));
-        PurchaseItem[] removingItem = findById(id);
+        List<Movie> list = new ArrayList<>(Arrays.asList(movies));
+        Movie[] removingItem = findById(id);
         if (removingItem == null){
             return;
         }
         list.remove(removingItem[0]);
-        PurchaseItem[] result = new PurchaseItem[list.size()];
+        Movie[] result = new Movie[list.size()];
         for (int i = 0; i < list.size(); i++) {
             result[i] = list.get(i);
         }
-        items = result;
+        movies = result;
     }
 
     public void removeAll(){
-        items = new PurchaseItem[0];
+        movies = new Movie[0];
     }
 }
