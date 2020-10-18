@@ -34,26 +34,4 @@ public class MovieManagerTest {
         Movie[] actual = manager1.getLast();
         assertArrayEquals(expected, actual);
     }
-
-    @Test
-    public void addToManager(){
-        Movie first = new Movie(1, "firstMovie", "firstGenre");
-        manager.add(first);
-        Movie[] expected = new Movie[]{first};
-        Movie[] actual = manager.getLast();
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public  void getLast(){
-        Movie first = new Movie(1, "firstMovie", "firstGenre");
-        Movie second = new Movie(2, "secondMovie", "secondGenre");
-        Movie third = new Movie(3, "thirdMovie", "thirdMovie");
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        Movie[] expected = new Movie[] {third, second, first};
-        Movie[] actual = manager.getLast();
-        assertArrayEquals(expected, actual);
-    }
 }
